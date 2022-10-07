@@ -1,13 +1,13 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { stringify } from 'querystring';
 import { LoanService } from './loan.service';
+import { Loan } from './schemas/loan.schema';
 
-@Controller('loans')
+@Controller('loan')
 export class LoanController {
   constructor(private readonly loanService: LoanService) {}
 
-  @Post()
-  createLoan(@Body('name') name: string, @Body('hash') hash: string) {
-    return this.loanService.create(name, hash);
+  @Post('/borrow')
+  createLoan(@Body('loanData') loanData: Loan) {
+    return this.loanService.createLoan(loanData);
   }
 }

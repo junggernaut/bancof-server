@@ -9,8 +9,8 @@ export class LoanService {
     @InjectModel(Loan.name) private readonly loanModel: Model<LoanDocument>,
   ) {}
 
-  create(name: string, hash: string) {
-    const newLoan = new this.loanModel({ name, hash });
+  createLoan(loanData: Loan) {
+    const newLoan = new this.loanModel(loanData);
     return newLoan.save();
   }
 }
