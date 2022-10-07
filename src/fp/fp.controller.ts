@@ -8,6 +8,6 @@ export class FpController {
   @Get(':collectionAddress')
   async getFp(@Param('collectionAddress') collectionAddress: string) {
     const fp = await this.fpService.getFp(collectionAddress);
-    console.log(fp);
+    return fp;
   }
 }

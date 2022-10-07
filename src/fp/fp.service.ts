@@ -32,5 +32,6 @@ export class FpService {
         .pipe(map((res) => res.data)),
     );
     console.log(second.data);
+    return first.floor_price;
   }
 }
