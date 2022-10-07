@@ -6,7 +6,8 @@ export class FpController {
   constructor(private readonly fpService: FpService) {}
 
   @Get(':collectionAddress')
-  getFp(@Param('collectionAddress') collectionAddress: string) {
-    return this.fpService.getFp(collectionAddress);
+  async getFp(@Param('collectionAddress') collectionAddress: string) {
+    const fp = await this.fpService.getFp(collectionAddress);
+    console.log(fp);
   }
 }

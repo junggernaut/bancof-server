@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { FpService } from './fp.service';
 import { FpController } from './fp.controller';
-import { ConfigModule } from '@nestjs/config';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
+  imports: [HttpModule],
   controllers: [FpController],
   providers: [FpService],
 })
