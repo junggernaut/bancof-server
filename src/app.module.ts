@@ -7,7 +7,6 @@ import { FpModule } from './fp/fp.module';
 import { LoanModule } from './loan/loan.module';
 import { TestModule } from './test/test.module';
 import { GlobalHttpModule } from './http/http.module';
-import { TestServiceA } from './test/test.service';
 
 @Module({
   imports: [
