@@ -1,9 +1,13 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
+import { TestServiceA } from './test/test.service';
 
 @Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export default class AppController {
+  constructor(
+    private readonly appService: AppService,
+    private readonly testService: TestServiceA,
+  ) {}
 
   @Get()
   getHello(): string {
@@ -13,5 +17,10 @@ export class AppController {
   getHello2(@Body('name') name: string, @Body('hash') hash: string): string {
     console.log(name, hash);
     return this.appService.getHello();
+  }
+
+  @Get('/apptest')
+  getHello3(): string {
+    return this.testService.testHello();
   }
 }
