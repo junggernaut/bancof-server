@@ -1,6 +1,6 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { catchError, lastValueFrom, map } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
 
 @Injectable()
 export class GlobalHttpService {
@@ -20,38 +20,33 @@ export class GlobalHttpService {
             };
           }),
         ),
-    ).catch((error) => {
-      if (error.response) {
-        return {
-          success: false,
-          data: error.response.data,
-        };
-      } else if (error.request) {
-        return {
-          success: false,
-          data: error.request,
-        };
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log('Error', error.message);
-        return {
-          success: false,
-          data: error.message,
-        };
-      }
+    ).catch((err) => {
+      return {
+        success: false,
+        data: err,
+      };
     });
   }
 
-  post(url, body, headers) {
+  post(url, body?, headers?) {
     return lastValueFrom(
       this.httpService
         .post(url, body, {
           headers,
         })
         .pipe(
-          map((res) => res.data),
-          catchError((err) => err),
+          map((res) => {
+            return {
+              success: true,
+              data: res.data,
+            };
+          }),
         ),
-    );
+    ).catch((err) => {
+      return {
+        success: false,
+        data: err,
+      };
+    });
   }
 }

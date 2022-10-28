@@ -4,7 +4,7 @@ import { TestController } from './test.controller';
 
 @Module({
   controllers: [TestController],
-  providers: [ChildService, TestServiceA],
+  providers: [TestServiceA, ChildService],
   exports: [TestServiceA],
 })
 export class TestModule {}

@@ -8,7 +8,6 @@ export class TestController {
     private readonly testService: TestServiceA,
   ) {}
 
-  // Property - based injection 예제
   @Get('propertyBase')
   propertyBaseTest(): string {
     return this.childService.testHello();

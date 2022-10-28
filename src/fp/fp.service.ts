@@ -20,7 +20,6 @@ export class FpService {
       this.httpService.get(`${urls.fp.looksware.prefix}${collectionAddress}`),
     ]);
     if (nftgo.success === true) {
-      console.log(nftgo.data.floor_price.value);
       fps.push(nftgo.data.floor_price.value);
     }
     if (looksware.success === true) {

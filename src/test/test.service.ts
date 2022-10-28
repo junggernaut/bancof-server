@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-// propertyBase.testServiceA.ts
-@Injectable()
+// @Injectable()
 export class TestServiceA {
   testint: number;
 
@@ -17,9 +16,9 @@ export class TestServiceA {
 
 export class ParentService {
   // constructor(private readonly testServiceA: TestServiceA) {}
-  constructor(
-    @Inject(TestServiceA) private readonly testServiceA: TestServiceA,
-  ) {}
+
+  @Inject(TestServiceA)
+  private readonly testServiceA: TestServiceA;
 
   testHello(): string {
     return 'hello world';
